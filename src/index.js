@@ -45,11 +45,10 @@ function removeProduct(event) {
   const target = event.currentTarget;
   console.log('The target in remove is:', target);
   //... your code goes here
-  const removeProduct = product.querySelector('.btn.btn-remove');
-  removeProduct.addEventListener('click', (e) => {
-    const tr = e.target.parentNode.parentNode;
-    tr.parentNode.removeChild(tr);
-  });
+  const body = document.querySelector('tbody')
+  body.removeChild(target.parentNode.parentNode)
+  
+  calculateAll();
 }
 
 // ITERATION 5
@@ -59,8 +58,11 @@ function createProduct() {
 }
 
 window.addEventListener('load', () => {
+
   const calculatePricesBtn = document.getElementById('calculate');
   calculatePricesBtn.addEventListener('click', calculateAll);
 
   //... your code goes here
+  const buttonRemove = document.querySelectorAll('.btn-remove');
+  buttonRemove.forEach((button) => button.addEventListener('click', removeProduct));
 });
